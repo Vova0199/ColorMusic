@@ -13,7 +13,6 @@ void setup() {
 
   pinMode(POT_GND, OUTPUT);
   digitalWrite(POT_GND, LOW);
-  butt1.setTimeout(900);
   IRLremote.begin(IR_PIN);
 
   BTSerial.begin(9600);

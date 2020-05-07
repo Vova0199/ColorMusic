@@ -95,9 +95,41 @@ byte HUE_STEP = 5;
  
 int gRxPin = 3;
 int gTxPin = 4;
- 
+
 SoftwareSerial BTSerial(gRxPin, gTxPin);
 
+
+const char *headers[]  = {
+"brigh",   // 0
+"empty_bright",   // 1
+"rainbow_step",   // 2
+"smooth",   // 3
+"smooth_freq",   // 4
+"max_coef_freq",   // 5
+"mode", // 6
+"lcolor", //7
+"strobe_smooth", //8
+"strobe_period", //9
+"running_speed", //10
+"hue_start", //11
+"calibration", //12
+};
+
+enum names {
+BT_BRIGH,   // 0
+BT_EMPTY,   // 1
+BT_RAINBOW_STEP,   // 2
+BT_SMOOTH,   // 3
+BT_SMOOTH_FREQ,    // 4
+BT_MAX_COEF_FREQ,    // 5
+BT_MODE,     //6
+LCOLOR,    //7
+BT_STROBE_SMOOTH, //8
+BT_STROBE_PERIOD, //9
+BT_RUNNING_SPEED, //10
+BT_HUE_START, //11
+CALIBRATION, //12
+};
 
 String prsValue = "";
 boolean recievedFlag;

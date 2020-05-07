@@ -1,24 +1,4 @@
-const char *headers[]  = {
-"brigh",   // 0
-"rnstp",   // 1
-"vsmooth",   // 2
-"fcoef",   // 3
-"fsmooth",   // 4
-"speriod",   // 5
-"mode", // 6
-"lcolor", //7
-};
 
-enum names {
-BRIGH,   // 0
-RNSTP,   // 1
-SMTH,   // 2
-FCOEF,   // 3
-FSMOOTH,    // 4
-SPERIOD,    // 5
-TMODE,     //6
-LCOLOR,    //7
-};
 
 void BluetoothControl(){
   parsingSeparate();
@@ -26,9 +6,9 @@ void BluetoothControl(){
   recievedFlag = false;
   Serial.println(prsValue);
   switch (thisName) {
-    case TMODE:
+    case BT_MODE:
       switch (prsValue.toInt()) {
-              // режимы
+              // режими
               case 0: this_mode = 0;
                 break;
               case 1: this_mode = 1;
@@ -49,25 +29,53 @@ void BluetoothControl(){
                 break;
             }
       break;
-    case BRIGH:
+    case BT_BRIGH:
       BRIGHTNESS = prsValue.toInt();
       Serial.println(BRIGHTNESS);
       break;
-    case SMTH:
+    case BT_EMPTY:
+      EMPTY_BRIGHT = prsValue.toInt();
+      Serial.println(EMPTY_BRIGHT);
+      break;
+    case BT_RAINBOW_STEP:
+      RAINBOW_STEP = prsValue.toFloat();
+      Serial.println(RAINBOW_STEP);
+      break;
+    case BT_SMOOTH:
       SMOOTH = prsValue.toFloat();
       Serial.println(SMOOTH);
       break;
-    case FCOEF:
+    case BT_SMOOTH_FREQ:
+      SMOOTH_FREQ = prsValue.toFloat();
+      Serial.println(SMOOTH_FREQ);
+      break;
+    case BT_MAX_COEF_FREQ:
       MAX_COEF_FREQ = prsValue.toFloat();
       Serial.println(MAX_COEF_FREQ);
-      break;
-    case RNSTP:
-      RAINBOW_STEP = prsValue.toFloat();
-      Serial.println(RAINBOW_STEP);
       break;
     case LCOLOR:
       lightHUE = prsValue.toInt();
       Serial.print(lightHUE);
+      break;
+    case BT_STROBE_SMOOTH:
+      STROBE_SMOOTH = prsValue.toInt();
+      Serial.print(STROBE_SMOOTH);
+      break;
+    case BT_STROBE_PERIOD:
+      STROBE_PERIOD = prsValue.toInt();
+      Serial.print(STROBE_PERIOD);
+      break;
+    case BT_RUNNING_SPEED:
+      RUNNING_SPEED = prsValue.toInt();
+      Serial.print(RUNNING_SPEED);
+      break;
+    case BT_HUE_START:
+      HUE_START = prsValue.toInt();
+      Serial.print(HUE_START);
+      break;
+    case CALIBRATION:
+      fullLowPass();
+      Serial.print("Calibration");
       break;
   }
 }
